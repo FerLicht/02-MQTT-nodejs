@@ -1,5 +1,8 @@
 const mqtt = require("mqtt");
-const client = mqtt.connect("mqtt://172.31.86.248");
+var config = require("./config");
+
+var mqttUri  = 'mqtt://' + config.mqtt.hostname + ':' + config.mqtt.port;
+const client = mqtt.connect(mqttUri);
 
 client.on("connect", () => {
   client.subscribe("+", (err) => {
